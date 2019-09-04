@@ -1,0 +1,27 @@
+import java.util.Scanner;
+
+
+public class FindFirstThreeLargestNumbers {
+
+public static void main(String[] args) {
+	System.out.print("Enter The Array Size :  Minimum 3");
+	Scanner in = new Scanner(System.in); 
+	int size = in.nextInt();
+	int[] arr = new int[size] ;
+	int max = 0,secondMax = 0,thirdMax = 0;
+	System.out.print("Enter the elements");
+	for (int i = 0; i < size; i++) {
+		arr[i] = in.nextInt();
+	}
+  
+  for (int i = 0; i < arr.length; i++) {
+	if(arr[i]>max){
+		thirdMax = secondMax;
+		secondMax = max;
+		max = arr[i];		
+	}
+}
+
+System.out.println("Max is" + max + "Second Max is" + secondMax +"Third Max is" + thirdMax );
+}
+}

@@ -1,0 +1,30 @@
+
+//Find longest sequence of zeros in binary representation of an integer.
+
+
+import java.util.Scanner;
+
+
+public class LongestSequenceOfZeros {
+public static void main(String[] args) {
+System.out.println("Enter the number");
+Scanner in = new Scanner(System.in);
+int input = in.nextInt();
+int x,count=0 ,maxCount =0;
+while(input>0) {
+	x = input%2;
+	
+	if(x == 0 ){
+		count++;
+		maxCount = maxCount > count ? maxCount : count ;
+	}
+	else
+		count =0;
+	
+	input = input / 2 ;
+
+}
+
+System.out.println("Number of Zeros in the Binary Number"+maxCount);
+}
+}

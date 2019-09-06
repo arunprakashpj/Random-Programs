@@ -4,27 +4,43 @@
 
 import java.util.Scanner;
 
-
 public class LongestSequenceOfZeros {
-public static void main(String[] args) {
-System.out.println("Enter the number");
-Scanner in = new Scanner(System.in);
-int input = in.nextInt();
-int x,count=0 ,maxCount =0;
-while(input>0) {
-	x = input%2;
-	
-	if(x == 0 ){
-		count++;
-		maxCount = maxCount > count ? maxCount : count ;
+	public static void main(String[] args) {
+		System.out.println("Enter the number");
+		Scanner in = new Scanner(System.in);
+		int input = in.nextInt();
+		int digit, count = 0, maxCount = 0;
+		String binaryDigit = "";
+		while (input > 0) {
+			digit = input % 2;
+
+			if (digit == 0) {
+				count++;
+				maxCount = maxCount > count ? maxCount : count;
+			} else
+				count = 0;
+			binaryDigit = binaryDigit + "" + digit;
+			input = input / 2;
+
+		}
+		System.out.println("Longest Sequence of zeros is "
+				+ longSequence(binaryDigit));
 	}
-	else
-		count =0;
-	
-	input = input / 2 ;
 
-}
-
-System.out.println("Number of Zeros in the Binary Number"+maxCount);
-}
+	private static int longSequence(String binaryDigit) {
+		
+		char[] binaryArray = binaryDigit.toCharArray();
+		int currentCount = 0, newCount = 0, flag = 0;
+		for (int i = 0; i < binaryArray.length; i++) {
+			if (binaryArray[i] == '1') {
+				currentCount = currentCount < newCount && flag == 1 ? newCount
+						: currentCount;
+				newCount = 0;
+				flag = 1;
+			} else
+				newCount++;
+		}
+		System.out.println("currentCount" + currentCount);
+		return currentCount;
+	}
 }

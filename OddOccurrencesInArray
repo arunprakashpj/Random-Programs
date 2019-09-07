@@ -1,25 +1,43 @@
+
+
+/* A non-empty array A consisting of N integers is given. 
+The array contains an odd number of elements, and each element of the array can be paired with another element that has the same value,
+except for one element that is left unpaired.  */
+
+
+
+import java.security.KeyStore.Entry;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-
 public class OddOccurrencesInArray {
-public static void main(String[] args) {
-	Scanner in = new Scanner(System.in);
-	System.out.println("Enter Odd Size of Array ");
-	int arrSize = in.nextInt();
-	System.out.println("Enter The Elements ");
-	int[] inputArray = new int[arrSize];
-	for (int i = 0; i < arrSize; i++) {
-		inputArray[i] = in.nextInt();
-	}
-	HashMap hm = new HashMap();
-	int count = 0 ;
-	for (int i = 0; i < inputArray.length; i++) {
-		if(hm.get(inputArray[i]) != null)
-			count++;
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter Odd Size of Array ");
+		int arrSize = in.nextInt();
+		int result = 0;
+		System.out.println("Enter The Elements ");
+		int[] inputArray = new int[arrSize];
+		for (int i = 0; i < arrSize; i++) {
+			inputArray[i] = in.nextInt();
+		}
+		HashMap<Integer, Integer> hm = new HashMap<Integer, Integer>();
+		int count = 1;
+		for (int i = 0; i < inputArray.length; i++) {
+			if ((hm.get(inputArray[i])) != null) {
+				count = hm.get(inputArray[i]) + 1;
+				hm.put(inputArray[i], count);
+			} else
+				hm.put(inputArray[i], 1);
+		}
 
+		for (Map.Entry<Integer, Integer> entry : hm.entrySet()) {
+			if (entry.getValue() == 1) {
+				result = entry.getKey();
+				break;
+			}
+		}
+		System.out.println("Expected Lonly Integer is " + result);
 	}
-	
-}
 }

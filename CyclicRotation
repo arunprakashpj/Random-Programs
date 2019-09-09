@@ -1,27 +1,46 @@
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
-
 public class CyclicRotation {
-public static void main(String[] args) {
+	public static void main(String[] args) {
 
-	Scanner in = new Scanner(System.in);
-	System.out.println("Enter the Size of Array ");
-	int arrSize = in.nextInt();
-	int result = 0;
-	System.out.println("Enter The Elements ");
-	int[] inputArray = new int[arrSize];
-	for (int i = 0; i < arrSize; i++) {
-		inputArray[i] = in.nextInt();
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the Size of Array ");
+		int arrSize = in.nextInt();
+		int result = 0;
+		System.out.println("Enter The Elements ");
+		int[] inputArray = new int[arrSize];
+		for (int i = 0; i < arrSize; i++) {
+			inputArray[i] = in.nextInt();
+		}
+		System.out.println("Enter the value of K (number of rotation) ");
+		int k = in.nextInt();
+
+		Integer[] finalResult = rotateTheArray(inputArray, k);
+		System.out.println("---Result---");
+		for (int i = 0; i < finalResult.length; i++) {
+			System.out.print(finalResult[i]);
+		}
+
 	}
-	System.out.println("Enter the value of K (number of rotation) ");
-	int k = in.nextInt();
-	
-	rotateTheArray();
-	
-}
 
-private static void rotateTheArray() {
-	// TODO Auto-generated method stub
-	
-}
+	private static Integer[] rotateTheArray(int[] inputArray, int k) {
+		// TODO Auto-generated method stub
+
+		// 1 2 3 4 5 -- 5 1 2 3 4
+
+		List<Integer> outputList = new ArrayList<Integer>();
+		for (int i = inputArray.length - k; i < inputArray.length; i++) {
+			outputList.add(inputArray[i]);
+		}
+
+		for (int i = 0; i < inputArray.length - k; i++) {
+			outputList.add(inputArray[i]);
+		}
+
+		Integer[] itemsArray = new Integer[outputList.size()];
+		return outputList.toArray(itemsArray);
+
+	}
 }

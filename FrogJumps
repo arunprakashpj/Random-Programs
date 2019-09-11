@@ -1,0 +1,24 @@
+import java.util.Scanner;
+
+/*A  wants to get to the other side of the road. 
+ * The frog is currently located at position X and 
+ * wants to get to a position greater than or equal to 
+ * Y. The small frog always jumps a fixed distance, D.
+ */
+public class FrogProject {
+	public static void main(String[] args) {
+		Scanner in = new Scanner(System.in);
+		System.out.println("Enter the value of position X");
+		int x = in.nextInt();
+		System.out.println("Enter the value of position Y");
+		int y = in.nextInt();
+		System.out.println("Enter the value of fixed Distance D");
+		int d = in.nextInt();
+		
+		int finalYvalue =  y -x ;
+		int result =0;
+		int calcJumps = finalYvalue / d ;
+		result = calcJumps == 0 ? calcJumps : calcJumps +1 ;
+		System.out.println("----Minimum Jumps----" + result);
+	}
+}

@@ -6,6 +6,8 @@ The goal is to rotate array A K times; that is, each element of A will be shifte
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class CyclicRotation {
@@ -23,7 +25,7 @@ public class CyclicRotation {
 		System.out.println("Enter the value of K (number of rotation) ");
 		int k = in.nextInt();
 
-		Integer[] finalResult = rotateTheArray(inputArray, k);
+		int[] finalResult = rotateTheArray(inputArray, k);
 		System.out.println("---Result---");
 		for (int i = 0; i < finalResult.length; i++) {
 			System.out.print(finalResult[i]);
@@ -31,22 +33,34 @@ public class CyclicRotation {
 
 	}
 
-	private static Integer[] rotateTheArray(int[] inputArray, int k) {
+	private static int[] rotateTheArray(int[] A, int k) {
 		// TODO Auto-generated method stub
 
 		// 1 2 3 4 5 -- 5 1 2 3 4
 
-		List<Integer> outputList = new ArrayList<Integer>();
-		for (int i = inputArray.length - k; i < inputArray.length; i++) {
-			outputList.add(inputArray[i]);
+		/*
+		 * List<Integer> outputList = new ArrayList<Integer>(); for (int i =
+		 * inputArray.length - k; i < inputArray.length; i++) {
+		 * outputList.add(inputArray[i]); }
+		 * 
+		 * for (int i = 0; i < inputArray.length - k; i++) {
+		 * outputList.add(inputArray[i]); }
+		 * 
+		 * Integer[] itemsArray = new Integer[outputList.size()]; return
+		 * outputList.toArray(itemsArray);
+		 */
+
+		int size = A.length;
+
+		int cyclic[] = new int[size];
+		k = k % size;
+		for (int i = 0; i < size - k; i++) {
+			cyclic[i + k] = A[i];
 		}
-
-		for (int i = 0; i < inputArray.length - k; i++) {
-			outputList.add(inputArray[i]);
+		for (int i = 0; i < k; i++) {
+			cyclic[i] = A[size - k + i];
 		}
-
-		Integer[] itemsArray = new Integer[outputList.size()];
-		return outputList.toArray(itemsArray);
-
+		return cyclic;
 	}
 }
+

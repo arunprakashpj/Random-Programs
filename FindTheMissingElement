@@ -1,3 +1,19 @@
 An array A consisting of N different integers is given. The array contains integers in the range [1..(N + 1)], which means that exactly one element is missing.
 
 Your goal is to find that missing element.
+
+
+public class FindTheMissingElement {
+	public static void main(String[] args) {
+
+		int arr[] = new int[] { '1', '2', '4', '3', '6' };
+		int sum = 0, tSum = 0, missingElement = 0;
+		for (int i = 0; i < arr.length; i++) {
+			sum = sum + arr[i];
+		}
+		tSum = arr[arr.length] * arr[arr.length] + 1;
+		missingElement = tSum - sum;
+
+		System.out.println("Missing Element is " + missingElement);
+	}
+}

@@ -5,17 +5,33 @@ Any integer P, such that 0 < P < N, splits this tape into two non-empty parts: A
 The difference between the two parts is the value of: |(A[0] + A[1] + ... + A[P − 1]) − (A[P] + A[P + 1] + ... + A[N − 1])|
 
 In other words, it is the absolute difference between the sum of the first part and the sum of the second part.
+import java.util.Arrays;
 
 public class TapeEquilibrium {
 	public static void main(String[] args) {
-		int arr[] = new int[] { 1, 2, 3, 4, 5 };
-		int total = 0;
-		for (int i = 0; i < arr.length; i++) {
-			total = total + arr[i];
+		System.out.println(solution(new int[] { 3, 1, 2, 4, 3 }));
+
+	}
+
+	private static int solution(int[] inputArr) {
+		// TODO Auto-generated method stub
+
+		int x = 0, y = 0, total = 0;
+		int[] outputArr = new int[inputArr.length - 1];
+
+		for (int i = 1; i < inputArr.length; i++) {
+			total = total + inputArr[i];
 		}
-		
-		for (int i = 0; i < arr.length; i++) {
-			// In Progress
+
+		for (int i = 0; i < inputArr.length - 1; i++) {
+			x = x == 0 ? inputArr[i] : y;
+			outputArr[i] = Math.abs(x - total);
+			y = x + inputArr[i + 1];
+			total = Math.abs(total - inputArr[i + 1]);
 		}
+
+		Arrays.sort(outputArr);
+		return outputArr[0];
 	}
 }
+

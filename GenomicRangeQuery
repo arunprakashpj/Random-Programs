@@ -1,0 +1,41 @@
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class GenomicRangeQuery {
+	public static void main(String[] args) {
+		System.out.println(solution("GGGGGGGG", new int[] { 2, 5, 0 }, new int[] { 4, 5, 6 }));
+	}
+
+	public static int[] solution(String S, int[] P, int[] Q) {
+
+		char inputChar[] = S.toCharArray();
+		HashMap<Character, Integer> hp = new HashMap<Character, Integer>();
+		String convertedStr = "";
+		String arr[] = new String[P.length];
+		char[] tempArr = new char[P.length];
+		int OutputArr[] = new int[P.length];
+		hp.put('A', 1);
+		hp.put('C', 2);
+		hp.put('G', 3);
+		hp.put('T', 4);
+
+		if (S.length() > 0) {
+
+			for (int i = 0; i < inputChar.length; i++) {
+				convertedStr = convertedStr + hp.get(inputChar[i]);
+			}
+
+			for (int i = 0; i < P.length; i++) {
+				arr[i] = convertedStr.substring(P[i], Q[i] + 1);
+			}
+
+			for (int i = 0; i < arr.length; i++) {
+				tempArr = arr[i].toCharArray();
+				Arrays.sort(tempArr);
+				OutputArr[i] = tempArr[0] - '0';
+			}
+		}
+		return OutputArr;
+	}
+}

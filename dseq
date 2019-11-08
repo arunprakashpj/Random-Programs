@@ -1,0 +1,50 @@
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class decreasingSequence {
+	public static void main(String[] args) {
+		int[] nums = {1,1,1};
+		System.out.println(leastSubsequences(nums));
+
+	}
+
+	private static int leastSubsequences(int[] nums) {
+		int t = 0;
+		int x = nums[t];
+		int count = 0;
+		List<Integer> list = new ArrayList<Integer>(nums.length);
+		for (int i : nums) {
+			list.add(i);
+		}
+		if (nums.length == 0) {
+			return 0;
+		}
+		if (nums.length == 1) {
+			return 1;
+		}
+		int temp = 0;
+		for (int i = 0; i < list.size(); i++) {
+			if (x < list.get(i)) {
+				temp = x;
+				x = list.get(i);
+				list.remove(list.indexOf(temp));
+				i--;
+
+			}
+			if (i == list.size() - 1) {
+				i = -1;
+				list.remove(list.indexOf(x));
+				count++;
+				if (list.isEmpty()) {
+					break;
+				}
+				x = list.get(0);
+
+			}
+
+		}
+		return count;
+
+	}
+}
